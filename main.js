@@ -2,10 +2,38 @@
 const EMPTY_HEART = '♡'
 const FULL_HEART = '♥'
 
-// Your JavaScript code goes here!
+//  Your JavaScript code goes here!
+const heartChange = {
+  "♡": "♥",
+  "♥": "♡"
+};
 
+const colorChange = {
+  "red" : "",
+  "" : "red"
+};
 
+const likes = document.querySelectorAll(".like-glyph");
 
+function addLike(event) {
+  const heart = event.target;
+  mimicServerCall()
+   
+    .then(function(resp){
+       heart.innerText = heartChange[heart.innerText];
+       heart.style.color = colorChange[heart.style.color];
+    })
+    .catch(function(err) {
+      document.querySelector('#modal').classList.remove('hidden')
+      setTimeout(function () {
+        document.querySelector('#modal').classList.add('hidden')
+      }, 3000)
+    });
+}
+
+for (hearts of likes) {
+  hearts.addEventListener("click", addLike);
+}
 
 //------------------------------------------------------------------------------
 // Don't change the code below: this function mocks the server response
