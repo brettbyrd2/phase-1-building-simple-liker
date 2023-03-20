@@ -24,10 +24,10 @@ function addLike(event) {
        heart.style.color = colorChange[heart.style.color];
     })
     .catch(function(err) {
-      document.querySelector('#modal').classList.remove('hidden')
-      setTimeout(function () {
-        document.querySelector('#modal').classList.add('hidden')
-      }, 3000)
+      const modal = document.getElementById("modal");
+      modal.className = "";
+      modal.innerText = err;
+      setTimeout(() =>  modal.className = "hidden", 3000);
     });
 }
 
